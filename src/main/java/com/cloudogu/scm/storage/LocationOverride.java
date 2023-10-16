@@ -22,27 +22,44 @@
  * SOFTWARE.
  */
 
-plugins {
-  id 'org.scm-manager.smp' version '0.15.0'
-}
+package com.cloudogu.scm.storage;
 
-dependencies {
-  // define dependencies to other plugins here e.g.:
-  // plugin "sonia.scm.plugins:scm-mail-plugin:2.1.0"
-  // optionalPlugin "sonia.scm.plugins:scm-editor-plugin:2.0.0"
-}
+import com.google.common.base.Strings;
+import sonia.scm.EagerSingleton;
+import sonia.scm.plugin.Extension;
+import sonia.scm.repository.Repository;
+import sonia.scm.repository.RepositoryLocationOverride;
 
-scmPlugin {
-  scmVersion = "2.47.1-SNAPSHOT"
-  displayName = "Custom Storage Plugin"
-  description = "Lets you change the directory where a repository is stored."
+import javax.inject.Inject;
+import java.nio.file.Path;
 
-  author = "Cloudogu GmbH"
-  category = "Administration"
+@Extension
+@EagerSingleton
+public class LocationOverride implements RepositoryLocationOverride {
 
-  openapi {
-    packages = [
-      "com.cloudogu.scm.storage"
-    ]
+  private final CustomStoragePathService service;
+
+  @Inject
+  public LocationOverride(CustomStoragePathService service) {
+    this.service = service;
+  }
+
+  @Override
+  public Path overrideLocation(Repository repository, Path defaultPath) {
+    return service
+      .getCustomStoragePath()
+      .filter(p -> !Strings.isNullOrEmpty(p))
+      .map(pattern -> createPath(repository, pattern))
+      .orElse(defaultPath);
+  }
+
+  private static Path createPath(Repository repository, String pattern) {
+    return Path.of(
+      pattern
+        .replace("{namespace}", repository.getNamespace())
+        .replace("{name}", repository.getName())
+        .replace("{type}", repository.getType())
+        .replace("{id}", repository.getId())
+    );
   }
 }

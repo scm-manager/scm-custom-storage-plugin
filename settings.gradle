@@ -22,4 +22,4 @@
  * SOFTWARE.
  */
 
-rootProject.name = 'scm-repository-storage-plugin'
+rootProject.name = 'scm-custom-storage-plugin'

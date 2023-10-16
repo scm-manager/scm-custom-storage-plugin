@@ -1,0 +1,54 @@
+{
+  "scm-custom-storage-plugin": {
+    "title": "Repository Storage",
+    "navLink": "Storage",
+    "override": {
+      "title": "Override Storage Location",
+      "label": "Custom Storage Location",
+      "description1": "If a path is configured here, it will be used instead of the default storage location. The path has to be individual for each new repository that will be created. To accomplish this, you can use the following templates:",
+      "description2": "The default path is 'repositories/{id}'. Paths are relative to the scm home directory, unless they start with a forward slash ('/'). If you want to get paths with the namespace and the name of the repository, use 'repositories/{namespace}/{name}' (this will not update the name of the path, when the repository is renamed).",
+      "template": {
+        "namespace": "The namespace of the new repository.",
+        "name": "The name of the new repository.",
+        "type": "The type of the new repository.",
+        "id": "The id of the new repository."
+      }
+    },
+    "overview": {
+      "title": "Overview",
+      "introduction": "This overview shows the storage locations for all repositories on the server. You can move or copy the repository data files to other locations. Use this cautiously."
+    },
+    "moveDialog": {
+      "title": "Modify Storage Location",
+      "notification": {
+        "move": "This will move all repository related data to the given path. The new path must not yet exist and has to be creatable by the server (that is, the parent path has to have appropriate write permissions for the account running the server process). During the process the repository will not be accessible and will be removed from the overview. When the data has been moved successfully, the repository will be usable again.",
+        "copy": "This will copy all repository related data to the given path and use this new path instead of the old one. The old path will not be deleted. The new path must not yet exist and has to be creatable by the server (that is, the parent path has to have appropriate write permissions for the account running the server process). During the process the repository will not be accessible and will be removed from the overview. When the data has been copied successfully, the repository will be usable again."
+      },
+      "warning": "If the process is interrupted in any way, either due to a full storage, server reboot or the like, your repository will most likely be corrupted and will have to be fixed manually.",
+      "move": "Move",
+      "copy": "Copy",
+      "cancel": "Cancel",
+      "newPath": {
+        "label": "New path",
+        "help": "Specify the new path where the data of the repository shall be stored. This path will contain the repository data directly. The path will be created by the server and must not exist before."
+      }
+    },
+    "dangerZone": {
+      "title": "Modify Storage Location",
+      "description": "Move or copy the repository data to a new location."
+    }
+  },
+  "permissions": {
+    "configuration": {
+      "storage": {
+        "displayName": "Modify storage locations",
+        "description": "May modify the storage locations on the server for all repositories the user can read."
+      }
+    }
+  },
+  "notifications": {
+    "moveSuccess": "The repository data has been moved successfully.",
+    "copySuccess": "The repository data has been copied successfully.",
+    "modifyError": "The repository data could not be modified. Please see the server log for details."
+  }
+}

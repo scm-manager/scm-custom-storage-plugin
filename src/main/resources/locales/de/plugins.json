@@ -1,0 +1,54 @@
+{
+  "scm-custom-storage-plugin": {
+    "title": "Repository Speicherorte",
+    "navLink": "Speicherorte",
+    "override": {
+      "title": "Speicherorte überschreiben",
+      "label": "Benutzerdefinierter Speicherort",
+      "description1": "Wird hier ein Pfad konfiguriert, wird dieser anstelle des Standards genutzt. Dieser Pfad muss für einzelne Repositories individuelle Pfade erzeugen. Hierfür können die folgenden Templates genutzt werden:",
+      "description2": "Der Standardpfad ist 'repositories/{id}'. Pfade sind relativ zum SCM Home-Verzeichnis, wenn der Pfad nicht mit einem Schrägstrich ('/') startet. Um Pfade mit Namespace und Namen eines Repositories zu erhalten, kann der Pfad'repositories/{namespace}/{name}' genutzt werden (bei einer Umbenennung wird der Pfad nicht angepasst).",
+      "template": {
+        "namespace": "Der Namespace des neuen Repositories.",
+        "name": "Der Name des neuen Repositories.",
+        "type": "Der Typ des neuen Repositories.",
+        "id": "Die ID des neuen Repositories."
+      }
+    },
+    "overview": {
+      "title": "Übersicht",
+      "introduction": "Diese Übersicht zeigt die Speicherorte für alle Repositories auf dem Server. Die Dateien für Repositories können in andere Verzeichnisse verschoben oder kopiert werden. Diese Funktion sollte mit Bedacht genutzt werden."
+    },
+    "moveDialog": {
+      "title": "Speicherort verändern",
+      "notification": {
+        "move": "Verschiebt alle Dateien für das Repository in das angegebene Verzeichnis. Das neue Verzeichnis darf noch nicht existieren und muss vom Server erstellt werden können (d. h. das übergeordnete Verzeichnis muss entsprechende Schreibberechtigungen für das Benutzerkonto haben, unter dem der Server läuft). Während der Durchführung kann nicht auf das Repository zugegriffen werden und es taucht nicht in der Übersicht auf. Nachdem die Daten erfolgreich verschoben wurden, ist das Repository wieder normal nutzbar.",
+        "copy": "Kopiert alle Dateien für das Repository in das angegebene Verzeichnis und nutzt dieses anstelle des alten Verzeichnisses. Die alten Daten werden nicht gelöscht. Das neue Verzeichnis darf noch nicht existieren und muss vom Server erstellt werden können (d. h. das übergeordnete Verzeichnis muss entsprechende Schreibberechtigungen für das Benutzerkonto haben, unter dem der Server läuft). Während der Durchführung kann nicht auf das Repository zugegriffen werden und es taucht nicht in der Übersicht auf. Nachdem die Daten erfolgreich kopiert wurden, ist das Repository wieder normal nutzbar."
+      },
+      "warning": "Wird der Prozess in irgendeiner Form unterbrochen (z. B. aufgrund zu wenig Speicherplatz oder durch einen Neustart des Servers), wird das Repository mit großer Wahrscheinlichkeit beschädigt und nur manuell repariert werden können.",
+      "move": "Verschieben",
+      "copy": "Kopieren",
+      "cancel": "Abbrechen",
+      "newPath": {
+        "label": "Neues Verzeichnis",
+        "help": "Neues Verzeichnis, in dem die Daten für das Repository gespeichert werden sollen. Die Daten werden direkt in dieses Verzeichnis geschrieben. Das Verzeichnis wird durch den Server erstellt und darf im Vorfeld nicht existieren."
+      }
+    },
+    "dangerZone": {
+      "title": "Speicherort bearbeiten",
+      "description": "Daten an einen anderen Speicherort kopieren oder verschieben."
+    }
+  },
+  "permissions": {
+    "configuration": {
+      "storage": {
+        "displayName": "Speicherorte verändern",
+        "description": "Darf die Speicherorte für alle Repositories mit Leseberechtigung auf dem Server verändern."
+      }
+    }
+  },
+  "notifications": {
+    "moveSuccess": "Die Daten für das Repository wurden erfolgreich verschoben.",
+    "copySuccess": "Die Daten für das Repository wurden erfolgreich kopiert.",
+    "modifyError": "Die Daten für das Repository konnten nicht verändert werden. Bitte prüfen Sie die Server Logs für weitere Details."
+  }
+}

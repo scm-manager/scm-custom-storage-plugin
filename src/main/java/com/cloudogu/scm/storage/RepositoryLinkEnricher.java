@@ -22,27 +22,34 @@
  * SOFTWARE.
  */
 
-plugins {
-  id 'org.scm-manager.smp' version '0.15.0'
-}
+package com.cloudogu.scm.storage;
 
-dependencies {
-  // define dependencies to other plugins here e.g.:
-  // plugin "sonia.scm.plugins:scm-mail-plugin:2.1.0"
-  // optionalPlugin "sonia.scm.plugins:scm-editor-plugin:2.0.0"
-}
+import sonia.scm.api.v2.resources.Enrich;
+import sonia.scm.api.v2.resources.HalAppender;
+import sonia.scm.api.v2.resources.HalEnricher;
+import sonia.scm.api.v2.resources.HalEnricherContext;
+import sonia.scm.config.ConfigurationPermissions;
+import sonia.scm.plugin.Extension;
+import sonia.scm.repository.Repository;
 
-scmPlugin {
-  scmVersion = "2.47.1-SNAPSHOT"
-  displayName = "Custom Storage Plugin"
-  description = "Lets you change the directory where a repository is stored."
+import javax.inject.Inject;
 
-  author = "Cloudogu GmbH"
-  category = "Administration"
+@Extension
+@Enrich(Repository.class)
+public class RepositoryLinkEnricher implements HalEnricher {
 
-  openapi {
-    packages = [
-      "com.cloudogu.scm.storage"
-    ]
+  private final StorageLinks links;
+
+  @Inject
+  public RepositoryLinkEnricher(StorageLinks links) {
+    this.links = links;
+  }
+
+  @Override
+  public void enrich(HalEnricherContext context, HalAppender appender) {
+    Repository repository = context.oneRequireByType(Repository.class);
+    if (ConfigurationPermissions.custom("storage").isPermitted()) {
+      appender.appendLink("repository-storage", links.getModifyStorageLocationLink(repository));
+    }
   }
 }

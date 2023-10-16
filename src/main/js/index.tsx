@@ -22,27 +22,21 @@
  * SOFTWARE.
  */
 
-plugins {
-  id 'org.scm-manager.smp' version '0.15.0'
-}
+import { ConfigurationBinder as cfgBinder } from "@scm-manager/ui-components";
+import RepositoryStorage from "./RepositoryStorage";
+import { binder, extensionPoints } from "@scm-manager/ui-extensions";
+import SingleRepositoryStorage from "./SingleRepositoryStorage";
 
-dependencies {
-  // define dependencies to other plugins here e.g.:
-  // plugin "sonia.scm.plugins:scm-mail-plugin:2.1.0"
-  // optionalPlugin "sonia.scm.plugins:scm-editor-plugin:2.0.0"
-}
+cfgBinder.bindAdmin(
+  "/repository-storage",
+  "scm-custom-storage-plugin.navLink",
+  "fas fa-hdd",
+  "repository-storage",
+  RepositoryStorage
+);
 
-scmPlugin {
-  scmVersion = "2.47.1-SNAPSHOT"
-  displayName = "Custom Storage Plugin"
-  description = "Lets you change the directory where a repository is stored."
-
-  author = "Cloudogu GmbH"
-  category = "Administration"
-
-  openapi {
-    packages = [
-      "com.cloudogu.scm.storage"
-    ]
-  }
-}
+binder.bind<extensionPoints.RepositoryDangerZone>(
+  "repository.dangerZone",
+  SingleRepositoryStorage,
+  ({ repository }) => repository._links["repository-storage"]
+);

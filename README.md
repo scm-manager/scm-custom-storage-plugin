@@ -4,10 +4,10 @@
   </a>
 </p>
 <h1 align="center">
-  Repository Storage Plugin
+  Custom Storage Plugin
 </h1>
 
-Lets you change the path where a repository is stored on the persistent storage.
+Lets you change the directory where a repository is stored.
 
 ## Usage
 
