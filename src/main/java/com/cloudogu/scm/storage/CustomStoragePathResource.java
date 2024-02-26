@@ -28,6 +28,7 @@ import de.otto.edison.hal.HalRepresentation;
 import de.otto.edison.hal.Links;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import sonia.scm.config.ConfigurationPermissions;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -63,6 +64,7 @@ public class CustomStoragePathResource {
   @Path("")
   @Produces(MediaType.APPLICATION_JSON)
   public CustomStoragePathDto getCustomStoragePath() {
+    ConfigurationPermissions.custom("storage").check();
     return new CustomStoragePathDto(
       linkingTo()
         .single(link("update", links.getSetCustomStoragePathLink()))

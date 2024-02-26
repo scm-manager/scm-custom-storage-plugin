@@ -37,7 +37,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Optional;
 
-//@EagerSingleton
 class CustomStoragePathService {
 
   private final ConfigurationStoreFactory storeFactory;
@@ -48,6 +47,7 @@ class CustomStoragePathService {
   }
 
   void setCustomStoragePath(String path) {
+    ConfigurationPermissions.custom("storage").check();
     createStore().set(new StorageDefault(path));
   }
 
@@ -56,7 +56,6 @@ class CustomStoragePathService {
   }
 
   private ConfigurationStore<StorageDefault> createStore() {
-    ConfigurationPermissions.custom("storage").check();
     return storeFactory.withType(StorageDefault.class).withName("custom-storage-path").build();
   }
 
