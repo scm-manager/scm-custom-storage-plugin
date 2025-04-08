@@ -15,7 +15,7 @@
  */
 
 import React, { FC } from "react";
-import { ErrorNotification, Level, Loading } from "@scm-manager/ui-components";
+import { ErrorNotification, Level, Loading } from "@scm-manager/ui-core";
 import { HalRepresentationWithEmbedded, Link, Repository } from "@scm-manager/ui-types";
 import { apiClient } from "@scm-manager/ui-api";
 import { Menu } from "@scm-manager/ui-overlays";

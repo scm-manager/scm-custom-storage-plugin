@@ -14,10 +14,11 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-import { ErrorNotification, Loading, Subtitle, Title } from "@scm-manager/ui-components";
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { apiClient, useIndex } from "@scm-manager/ui-api";
+import { ErrorNotification, Loading, Subtitle, Title, useDocumentTitle } from "@scm-manager/ui-core";
 import { HalRepresentationWithEmbedded, Link as HalLink, Repository } from "@scm-manager/ui-types";
 import { useTranslation } from "react-i18next";
 import { Icon } from "@scm-manager/ui-buttons";
@@ -25,7 +26,6 @@ import { Card, CardList, CardListBox } from "@scm-manager/ui-layout";
 import ModifyDialog from "./ModifyDialog";
 import { Menu } from "@scm-manager/ui-overlays";
 import CustomPath from "./CustomPath";
-import { Link } from "react-router-dom";
 
 type SingleRepositoryStorage = HalRepresentationWithEmbedded<{ repository: Repository }> & {
   path: string;
@@ -89,6 +89,7 @@ const RepositoryStorageList: FC<{ link: string }> = ({ link }) => {
 
 const RepositoryStorage: FC<{ link: string }> = ({ link }) => {
   const [t] = useTranslation("plugins");
+  useDocumentTitle(t("scm-custom-storage-plugin.title"));
   const { data: index, isLoading, error } = useIndex();
 
   if (isLoading) {
