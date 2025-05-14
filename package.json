@@ -65,5 +65,8 @@
         "@scm-manager/ui-layout": "3.7.0",
         "react-query": "^3.39.2",
         "@scm-manager/ui-core": "3.7.0"
+    },
+    "resolutions": {
+      "@types/scheduler": "0.26.0"
     }
 }
