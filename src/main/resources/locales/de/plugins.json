@@ -1,17 +1,17 @@
 {
   "scm-custom-storage-plugin": {
-    "title": "Repository Speicherorte",
+    "title": "Repository-Speicherorte",
     "navLink": "Speicherorte",
     "override": {
       "title": "Speicherorte überschreiben",
       "label": "Benutzerdefinierter Speicherort",
-      "description1": "Wird hier ein Pfad konfiguriert, wird dieser anstelle des Standards genutzt. Dieser Pfad muss für einzelne Repositories individuelle Pfade erzeugen. Hierfür können die folgenden Templates genutzt werden:",
-      "description2": "Der Standardpfad ist 'repositories/{id}'. Pfade sind relativ zum SCM Home-Verzeichnis, wenn der Pfad nicht mit einem Schrägstrich ('/') startet. Um Pfade mit Namespace und Namen eines Repositories zu erhalten, kann der Pfad'repositories/{namespace}/{name}' genutzt werden (bei einer Umbenennung wird der Pfad nicht angepasst).",
+      "description1": "Wird hier ein Pfad konfiguriert, wird dieser anstelle des Standards genutzt. Dieser Pfad muss für einzelne Repositories individuelle Pfade erzeugen. Hierfür können die folgenden Vorlagen genutzt werden:",
+      "description2": "Der Standardpfad ist 'repositories/{id}'. Pfade sind relativ zum SCM-Home-Verzeichnis, wenn der Pfad nicht mit einem Schrägstrich ('/') startet. Um Pfade mit Namespace und Namen eines Repositorys zu erhalten, kann der Pfad 'repositories/{namespace}/{name}' genutzt werden (bei einer Umbenennung wird der Pfad nicht angepasst).",
       "template": {
-        "namespace": "Der Namespace des neuen Repositories.",
-        "name": "Der Name des neuen Repositories.",
-        "type": "Der Typ des neuen Repositories.",
-        "id": "Die ID des neuen Repositories."
+        "namespace": "Der Namespace des neuen Repositorys.",
+        "name": "Der Name des neuen Repositorys.",
+        "type": "Der Typ des neuen Repositorys.",
+        "id": "Die ID des neuen Repositorys."
       }
     },
     "overview": {
@@ -22,7 +22,7 @@
       "title": "Speicherort verändern",
       "notification": {
         "move": "Verschiebt alle Dateien für das Repository in das angegebene Verzeichnis. Das neue Verzeichnis darf noch nicht existieren und muss vom Server erstellt werden können (d. h. das übergeordnete Verzeichnis muss entsprechende Schreibberechtigungen für das Benutzerkonto haben, unter dem der Server läuft). Während der Durchführung kann nicht auf das Repository zugegriffen werden und es taucht nicht in der Übersicht auf. Nachdem die Daten erfolgreich verschoben wurden, ist das Repository wieder normal nutzbar.",
-        "copy": "Kopiert alle Dateien für das Repository in das angegebene Verzeichnis und nutzt dieses anstelle des alten Verzeichnisses. Die alten Daten werden nicht gelöscht. Das neue Verzeichnis darf noch nicht existieren und muss vom Server erstellt werden können (d. h. das übergeordnete Verzeichnis muss entsprechende Schreibberechtigungen für das Benutzerkonto haben, unter dem der Server läuft). Während der Durchführung kann nicht auf das Repository zugegriffen werden und es taucht nicht in der Übersicht auf. Nachdem die Daten erfolgreich kopiert wurden, ist das Repository wieder normal nutzbar."
+        "copy": "Kopiert alle Dateien für das Repository in das angegebene Verzeichnis und nutzt dieses anstelle des alten Verzeichnisses. Die alten Daten werden nicht gelöscht. Das neue Verzeichnis darf noch nicht existieren und muss vom Server erstellt werden können. Das übergeordnete Verzeichnis muss daher entsprechende Schreibberechtigungen für das Benutzerkonto haben, unter dem der Server läuft. Während der Durchführung kann nicht auf das Repository zugegriffen werden und es taucht nicht in der Übersicht auf. Nachdem die Daten erfolgreich kopiert wurden, ist das Repository wieder normal nutzbar."
       },
       "warning": "Wird der Prozess in irgendeiner Form unterbrochen (z. B. aufgrund zu wenig Speicherplatz oder durch einen Neustart des Servers), wird das Repository mit großer Wahrscheinlichkeit beschädigt und nur manuell repariert werden können.",
       "move": "Verschieben",
@@ -49,6 +49,6 @@
   "notifications": {
     "moveSuccess": "Die Daten für das Repository wurden erfolgreich verschoben.",
     "copySuccess": "Die Daten für das Repository wurden erfolgreich kopiert.",
-    "modifyError": "Die Daten für das Repository konnten nicht verändert werden. Bitte prüfen Sie die Server Logs für weitere Details."
+    "modifyError": "Die Daten für das Repository konnten nicht verändert werden. Bitte prüfen Sie die Serverlogs für weitere Details."
   }
 }
